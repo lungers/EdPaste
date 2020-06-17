@@ -66,15 +66,15 @@
 			<div class="form-group col-sm-3 @if ($errors->has('expire')) has-error @endif">
 				<label for="expire">Paste expiration</label>
 				<select class="form-control" name="expire" id="expire">
-                    <option disabled selected></option>
-					<option value="never">Never</option>
+					@if ($expiration != 0) <option disabled selected></option> @endif
+					<option value="never" {{ $expiration == 0 ? 'selected' : '' }}>Never</option>
 					<option value="burn">Burn after reading</option>
 					<option value="10m">10 minutes</option>
 					<option value="1h">1 hour</option>
 					<option value="1d">1 day</option>
 					<option value="1w">1 week</option>
 				</select>
-                @if ($errors->has('expire'))
+				@if ($errors->has('expire'))
 				<span class="help-block">
 					<strong>{{ $errors->first('expire') }}</strong>
 				</span>
