@@ -47,6 +47,14 @@
 		word-break: normal;
 	}
 	@endif
+    .same-user-buttons {
+        width: auto;
+        float: right;
+    }
+
+    .same-user-buttons a {
+        margin-right: 10px;
+    }
 </style>
 @endsection
 
@@ -80,12 +88,13 @@
 	</div>
 	@endif
 	<div class="row">
-		<div class="col-sm-11">
+               <div class="col-sm-10">
 			<h3 style="margin-top:0px; word-wrap: break-word;">{{ $title }}</h3>
 		</div>
 		{{-- Ici le petit panel de gestion --}}
 		@if ($sameUser == true)
-		<div class="col-sm-1 hidden-xs">
+		<div class="col-sm-2 hidden-xs same-user-buttons">
+			<a href="/edit/{{ $link }}" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
 			<button class="btn btn-danger btn-sm pull-right" type="button" data-toggle="modal" data-target="#delete" aria-expanded="false" aria-controls="collapse}"><i class="fa fa-trash-o"></i></button>
 		</div>
 		<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="preview" aria-hidden="true">
@@ -132,7 +141,6 @@
 		<div class="col-sm-12">
 			<label for="paste"><i>@if ($noSyntax == false) Syntax-highlighted @else Plain-text @endif</i></label>
 			@if ($privacy != "Password-protected") <i class="pull-right"><a href="/raw/{{ $link }}">Raw paste</a> @endif </i>
-			@if ($sameUser) <i class="pull-right" style="margin-right: 10px;"><a href="/edit/{{ $link }}">Edit paste</a> @endif </i>
 			<pre id="paste"><code class="code">@if ($noSyntax == true)<i>@endif{{ $content }} @if ($noSyntax == true)</i>@endif</code></pre>
 		</div>
 	</div>
